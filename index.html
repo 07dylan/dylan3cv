@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨琦 - 产品设计师简历 (未来主义风格)</title>
+    <style>
+        :root {
+            --primary-dark: #0a192f;
+            --primary-light: #172a45;
+            --accent: #64ffda;
+            --accent-glow: rgba(100, 255, 218, 0.3);
+            --text-primary: #e6f1ff;
+            --text-secondary: #8892b0;
+            --hologram: linear-gradient(135deg, #00c6ff, #0072ff);
+            --glass: rgba(23, 42, 69, 0.7);
+            --neon: 0 0 5px rgba(100, 255, 218, 0.5), 0 0 20px rgba(100, 255, 218, 0.2);
+            --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, var(--primary-light), var(--primary-dark));
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .loader-icon-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader-icon {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 10px var(--accent-glow));
+            z-index: 2;
+        }
+        
+        .loader-spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--accent);
+            border-right-color: var(--accent);
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            animation: rotate 2s linear infinite;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .loader-spinner::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: var(--accent);
+            border-left-color: var(--accent);
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        /* Header section */
+        .header {
+            margin-bottom: 80px;
+            position: relative;
+            padding-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .name-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .brand-logo-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(23, 42, 69, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 35px;
+            z-index: 2;
+        }
+        
+        .brand-logo-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        
+        .brand-logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--accent-glow);
+            border-color: rgba(100, 255, 218, 0.8);
+        }
+        
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 10px var(--accent-glow));
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        
+        .brand-logo-container:hover .brand-logo {
+            transform: rotate(5deg);
+        }
+        
+        .info-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 0;
+            z-index: 2;
+        }
+        
+        .name-title-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .main-info-item {
+            font-size: 36px;
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-weight: 500;
+            margin: 0;
+            text-shadow: 0 0 12px var(--accent-glow);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .name {
+            margin-right: 35px;
+        }
+        
+        .dylan {
+            margin-right: 35px;
+            text-transform: capitalize;
+        }
+        
+        .gender-icon {
+            font-size: 28px;
+            color: var(--accent);
+            margin-right: 0;
+            opacity: 0.9;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .divider {
+            width: 1px;
+            height: 35px;
+            margin: 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+            opacity: 0.8;
+        }
+        
+        .title {
+            margin: 0;
+            font-family: var(--font-mono);
+            font-size: 21px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            position: relative;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .title::before {
+            content: "";
+        }
+        
+        .title::after {
+            content: "";
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 30px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.05);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--neon);
+            border-color: var(--accent);
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            font-size: 16px;
+        }
+        
+        .contact-item span {
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+        
+        .contact-item span a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-item span a:hover {
+            text-decoration: underline;
+            text-shadow: var(--neon);
+        }
+        
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .career-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-light), rgba(100, 255, 218, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            box-shadow: 0 0 10px var(--accent-glow);
+            margin-right: 0;
+        }
+        
+        .career-badge i {
+            color: var(--accent);
+            font-size: 18px;
+        }
+        
+        /* 求职意向样式 */
+        .job-intent .glassmorphism-card {
+            padding: 40px;
+        }
+        
+        .career-path-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 30px;
+            padding: 6px 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .career-path-badge i {
+            color: var(--accent);
+            font-size: 16px;
+        }
+        
+        .career-path-badge span {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        .intent-text {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.7;
+            box-shadow: 0 0 5px var(--accent-glow);
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .tech-tag {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .tech-tag:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .glowing-circle {
+            position: absolute;
+            width: 140%;
+            height: 200%;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(100, 255, 218, 0.04) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: blur(20px);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background grid overlay -->
+    <div class="grid-overlay"></div>
+    
+    <!-- Particles container -->
+    <div class="particles" id="particles-js"></div>
+    
+    <!-- Loading screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-icon-container">
+                <div class="loader-spinner"></div>
+                <img src="imgs/dylan-logo.svg" alt="Dylan Logo" class="loader-icon">
+            </div>
+            <div class="loader-text">INITIALIZING UI SYSTEM...</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="name-container">
+                <div class="glowing-circle"></div>
+                <div class="brand-logo-container">
+                    <img src="imgs/dylan-logo.svg" alt="Dylan Logo" class="brand-logo">
+                </div>
+                <div class="info-container">
+                    <div class="name-title-group">
+                        <h1 class="main-info-item name">杨琦</h1>
+                        <span class="main-info-item dylan">Dylan</span>
+                        <i class="fas fa-mars gender-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>17608007620</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>myangqi@163.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-link"></i>
+                    <span><a href="https://www.figma.com/design/dUcFACbScN8wTfTISqBV6i/UI%E8%AE%BE%E8%AE%A1%E5%B8%88%E6%9D%A8%E7%90%A6-%E8%AE%BE%E8%AE%A1%E4%BD%9C%E5%93%81%E9%9B%86?node-id=0-1&t=Tan3Inl5EqtB4jPw-1">作品集链接</a></span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 主内容区域 -->
+        <main class="content">
+            <!-- 求职意向 -->
+            <section class="section job-intent" id="job-intent">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <div class="hexagon"></div>
+                        <h2 class="section-title">求职意向</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="glassmorphism-card">
+                    <div class="career-path-badge">
+                        <i class="fas fa-rocket"></i>
+                        <span>CAREER PATH</span>
+                    </div>
+                    <p class="intent-text">寻找<span class="highlight">产品设计师</span>岗位，希望能够参与<span class="highlight">AIGC</span>领域的设计工作，运用我的设计能力和技术知识，创造出革新性的用户体验，为产品带来价值。擅长界面设计、交互设计和视觉设计，熟悉设计系统构建，以及现代设计工具和方法论。</p>
+                    
+                    <div class="tech-tags">
+                        <div class="tech-tag">UI设计</div>
+                        <div class="tech-tag">AIGC</div>
+                        <div class="tech-tag">交互设计</div>
+                        <div class="tech-tag">用户体验</div>
+                        <div class="tech-tag">设计系统</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 工作经历 -->
+            <section class="section work-experience" id="work-experience">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <div class="hexagon"></div>
+                        <h2 class="section-title">工作经历</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="timeline">
+                    <!-- 第一份工作 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connector"></div>
+                        
+                        <div class="glassmorphism-card work-card">
+                            <div class="work-header">
+                                <h3 class="company-name">成都准度科技有限公司</h3>
+                                <div class="work-badge">
+                                    <span class="work-date">2020.02 - 至今</span>
+                                </div>
+                            </div>
+                            
+                            <div class="work-position">
+                                <span class="position-title">UI设计师兼产品助理</span>
+                                <div class="tech-indicator">
+                                    <div class="indicator-dot"></div>
+                                    <span>金融司法公证科技领域</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="work-responsibilities">
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>负责公司在线纠纷解决平台的产品界面设计，包括移动端和PC端的整体视觉风格制定和交互组件开发。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>参与公司多个法律科技项目的产品设计工作，包括在线调解、公证及电子合同等平台的界面与交互设计，提升用户体验。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>主导设计系统建设，确保设计风格一致性，通过标准化设计组件提高团队效率。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>与产品、开发团队紧密协作，进行需求分析和用户研究，推动产品迭代优化。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>熟练运用Cursor、MPC结合Figma，快速产出Figma可编辑原型图以及HTML可交互原型Demo，将原型制作周期缩短45%。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>利用Midjourney、StableDiffusion等AIGC工具，生成设计灵感图和素材，提升设计创新性。</p>
+                                </li>
+                            </ul>
+                            
+                            <div class="achievements">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>主要成就</span>
+                                </div>
+                                <p>主导设计的在线调解平台获得用户满意度显著提升，界面直观性和易用性获得客户好评；开发了公司设计规范库，提高了设计和开发效率。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第二份工作 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connector"></div>
+                        
+                        <div class="glassmorphism-card work-card">
+                            <div class="work-header">
+                                <h3 class="company-name">成都风起科技有限公司</h3>
+                                <div class="work-badge">
+                                    <span class="work-date">2017.11 - 2019.9</span>
+                                </div>
+                            </div>
+                            
+                            <div class="work-position">
+                                <span class="position-title">UI设计师</span>
+                                <div class="tech-indicator">
+                                    <div class="indicator-dot"></div>
+                                    <span>外包服务领域</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="work-responsibilities">
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>作为产品设计师，负责多个客户项目的产品外观和交互设计，能够快速适应不同行业和产品需求。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>与客户密切沟通需求，进行多轮设计修改，确保最终交付符合客户期望。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>通过优化用户界面和交互流程，为多个项目提升了用户体验，客户满意度高。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>参与多个行业的设计项目，包括电商、教育、金融等领域，积累了丰富的跨行业设计经验。</p>
+                                </li>
+                            </ul>
+                            
+                            <div class="achievements">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>主要成就</span>
+                                </div>
+                                <p>成功为多个客户完成界面设计项目，客户满意度超过90%；通过用户体验优化，帮助客户产品提升用户留存率平均20%。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第三份工作 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-connector"></div>
+                        
+                        <div class="glassmorphism-card work-card">
+                            <div class="work-header">
+                                <h3 class="company-name">壹玖壹玖酒类直供平台科技股份公司</h3>
+                                <div class="work-badge">
+                                    <span class="work-date">2015.07 - 2017.08</span>
+                                </div>
+                            </div>
+                            
+                            <div class="work-position">
+                                <span class="position-title">UI设计师</span>
+                                <div class="tech-indicator">
+                                    <div class="indicator-dot"></div>
+                                    <span>电子商务领域</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="work-responsibilities">
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>负责公司电商平台的产品设计，提升了用户界面的视觉吸引力和用户体验。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>参与设计了多个促销活动页面，增加了用户参与度和销售转化率。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>负责多个系统和应用的产品设计，包括快喝和隔壁仓库等App，确保设计的一致性和用户友好性。</p>
+                                </li>
+                                <li class="responsibility-item">
+                                    <div class="bullet-point"></div>
+                                    <p>与产品和开发团队紧密合作，确保设计的准确实现和项目的顺利推进。</p>
+                                </li>
+                            </ul>
+                            
+                            <div class="achievements">
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>主要成就</span>
+                                </div>
+                                <p>设计的活动页面在多次营销活动中取得良好效果，参与的App改版获得了用户正面反馈，提高了用户留存率和活跃度。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 项目经验 -->
+            <section class="section project-experience" id="project-experience">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <div class="hexagon"></div>
+                        <h2 class="section-title">项目经验</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- 项目1 -->
+                    <div class="project-card glassmorphism-card">
+                        <div class="project-header">
+                            <h3 class="project-title">在线调解平台</h3>
+                            <div class="project-badge">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-description">
+                                <p>为法院和调解机构设计的在线纠纷解决平台，帮助当事人远程参与调解，提高纠纷解决效率。</p>
+                            </div>
+                            
+                            <div class="project-contribution">
+                                <h4 class="contribution-title">我的贡献</h4>
+                                <ul class="contribution-list">
+                                    <li>设计整个平台的用户界面，包括PC端和移动端</li>
+                                    <li>构建清晰的用户流程，简化操作步骤</li>
+                                    <li>设计视频会议和在线签署功能界面</li>
+                                    <li>创建案件管理和文件处理系统的交互方式</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-outcome">
+                                <h4 class="outcome-title">项目成果</h4>
+                                <p>平台上线后案件处理时间缩短，用户满意度高，已在多个省市的法院和调解中心投入使用。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <div class="tech-tag">响应式设计</div>
+                            <div class="tech-tag">交互设计</div>
+                            <div class="tech-tag">视频会议</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目2 -->
+                    <div class="project-card glassmorphism-card">
+                        <div class="project-header">
+                            <h3 class="project-title">公证服务平台</h3>
+                            <div class="project-badge">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-description">
+                                <p>为公证处提供的在线公证服务系统，实现公证申请、材料提交、在线审核和公证书生成的全流程数字化。</p>
+                            </div>
+                            
+                            <div class="project-contribution">
+                                <h4 class="contribution-title">我的贡献</h4>
+                                <ul class="contribution-list">
+                                    <li>设计系统的整体界面和视觉风格</li>
+                                    <li>优化用户申请流程，降低操作复杂度</li>
+                                    <li>设计材料上传和审核流程的界面</li>
+                                    <li>构建后台管理系统的界面和交互方式</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-outcome">
+                                <h4 class="outcome-title">项目成果</h4>
+                                <p>系统上线后，公证处工作效率提升，用户申请公证的时间和成本显著降低，获得了公证处和用户的好评。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <div class="tech-tag">用户体验</div>
+                            <div class="tech-tag">后台设计</div>
+                            <div class="tech-tag">工作流</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目3 -->
+                    <div class="project-card glassmorphism-card">
+                        <div class="project-header">
+                            <h3 class="project-title">重庆银行演示项目</h3>
+                            <div class="project-badge">
+                                <i class="fas fa-university"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-description">
+                                <p>为重庆银行设计的金融科技产品演示系统，展示银行在数字化转型中的创新产品和服务。</p>
+                            </div>
+                            
+                            <div class="project-contribution">
+                                <h4 class="contribution-title">我的贡献</h4>
+                                <ul class="contribution-list">
+                                    <li>设计具有科技感的界面风格</li>
+                                    <li>创建数据可视化展示方案</li>
+                                    <li>设计产品演示流程和交互方式</li>
+                                    <li>制作动效和过渡效果</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-outcome">
+                                <h4 class="outcome-title">项目成果</h4>
+                                <p>项目获得客户高度评价，成功用于银行内部和对外展示，帮助银行展示了金融科技创新能力。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <div class="tech-tag">数据可视化</div>
+                            <div class="tech-tag">动效设计</div>
+                            <div class="tech-tag">展示系统</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 展开/收起按钮 -->
+                    <div class="toggle-projects-container" id="toggle-top">
+                        <button id="toggle-projects-top" class="toggle-projects-btn">
+                            <span class="toggle-text">查看更多项目</span>
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 隐藏的项目 -->
+                <div class="projects-grid hidden-projects">
+                    <!-- 项目4 -->
+                    <div class="project-card glassmorphism-card">
+                        <div class="project-header">
+                            <h3 class="project-title">镇远商城项目</h3>
+                            <div class="project-badge">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-description">
+                                <p>为地方特色产品打造的电子商务平台，专注于本地特产的推广和销售，促进区域经济发展。</p>
+                            </div>
+                            
+                            <div class="project-contribution">
+                                <h4 class="contribution-title">我的贡献</h4>
+                                <ul class="contribution-list">
+                                    <li>负责商城PC端和移动端的整体UI设计</li>
+                                    <li>创建符合地方特色的视觉风格和品牌形象</li>
+                                    <li>优化商品展示和购买流程，提升转化率</li>
+                                    <li>设计商城主页、商品详情、购物车等核心页面</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-outcome">
+                                <h4 class="outcome-title">项目成果</h4>
+                                <p>平台上线后销售额稳步增长，用户体验获得好评，为地方特色产品提供了有效的线上销售渠道。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <div class="tech-tag">电商设计</div>
+                            <div class="tech-tag">品牌形象</div>
+                            <div class="tech-tag">移动端设计</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 项目5 -->
+                    <div class="project-card glassmorphism-card">
+                        <div class="project-header">
+                            <h3 class="project-title">智慧燃气项目</h3>
+                            <div class="project-badge">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-content">
+                            <div class="project-description">
+                                <p>为燃气公司打造的智能化管理系统，实现燃气设备监控、安全预警、用户管理和业务办理的一体化管理。</p>
+                            </div>
+                            
+                            <div class="project-contribution">
+                                <h4 class="contribution-title">我的贡献</h4>
+                                <ul class="contribution-list">
+                                    <li>负责系统UI界面设计，包括管理后台和移动端应用</li>
+                                    <li>设计数据可视化界面，使复杂数据更直观易懂</li>
+                                    <li>优化用户交互流程，提高系统易用性</li>
+                                    <li>与开发团队协作，确保设计方案的准确实现</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-outcome">
+                                <h4 class="outcome-title">项目成果</h4>
+                                <p>系统成功上线运行，获得客户好评，提升了燃气管理的数字化水平，安全事件处理效率提高40%。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tech">
+                            <div class="tech-tag">后台系统</div>
+                            <div class="tech-tag">数据可视化</div>
+                            <div class="tech-tag">移动应用</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 底部的收起按钮 -->
+                    <div class="toggle-projects-container bottom-toggle" id="toggle-bottom">
+                        <button id="toggle-projects-bottom" class="toggle-projects-btn">
+                            <span class="toggle-text">收起项目</span>
+                            <i class="fas fa-chevron-up toggle-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 技能 -->
+            <section class="section skills" id="skills">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <div class="hexagon"></div>
+                        <h2 class="section-title">专业技能</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skills-grid">
+                        <!-- 设计工具 -->
+                        <div class="skill-category glassmorphism-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <i class="fas fa-bezier-curve"></i>
+                                </div>
+                                <h3 class="category-title">设计工具</h3>
+                            </div>
+                            
+                            <div class="skill-bars">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Figma</span>
+                                        <span class="skill-percentage">95%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="95"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Adobe XD</span>
+                                        <span class="skill-percentage">90%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="90"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Sketch</span>
+                                        <span class="skill-percentage">85%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="85"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Photoshop</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="80"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AIGC技能 -->
+                        <div class="skill-category glassmorphism-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3 class="category-title">AIGC应用</h3>
+                            </div>
+                            
+                            <div class="skill-bars">
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Midjourney</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="80"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Stable Diffusion</span>
+                                        <span class="skill-percentage">75%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="75"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item">
+                                    <div class="skill-info">
+                                        <span class="skill-name">AI辅助设计工具</span>
+                                        <span class="skill-percentage">80%</span>
+                                    </div>
+                                    <div class="skill-progress-bg">
+                                        <div class="skill-progress" data-percent="80"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 其他技能 -->
+                        <div class="skill-category glassmorphism-card">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h3 class="category-title">其他技能</h3>
+                            </div>
+                            
+                            <div class="skill-tags">
+                                <div class="skill-tag">产品规划</div>
+                                <div class="skill-tag">用户研究</div>
+                                <div class="skill-tag">设计系统</div>
+                                <div class="skill-tag">原型设计</div>
+                                <div class="skill-tag">交互设计</div>
+                                <div class="skill-tag">用户体验</div>
+                                <div class="skill-tag">视觉设计</div>
+                                <div class="skill-tag">项目管理</div>
+                                <div class="skill-tag">用户旅程图</div>
+                                <div class="skill-tag">竞品分析</div>
+                                <div class="skill-tag">信息架构</div>
+                                <div class="skill-tag">可用性测试</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 教育背景 -->
+            <section class="section education" id="education">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <div class="hexagon"></div>
+                        <h2 class="section-title">教育背景</h2>
+                    </div>
+                    <div class="section-line"></div>
+                </div>
+                
+                <div class="education-card glassmorphism-card">
+                    <div class="edu-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    
+                    <div class="edu-content">
+                        <div class="edu-header">
+                            <h3 class="school-name">四川文化产业职业学院</h3>
+                            <div class="edu-badge">
+                                <span class="edu-date">2016.09 - 2019.06</span>
+                            </div>
+                        </div>
+                        
+                        <div class="edu-details">
+                            <div class="edu-major">
+                                <span class="label">专业:</span>
+                                <span class="value">产品造型设计</span>
+                            </div>
+                            <div class="edu-degree">
+                                <span class="label">学历:</span>
+                                <span class="value">大专</span>
+                            </div>
+                        </div>
+                        
+                        <div class="edu-description">
+                            <p>主修课程包括UI设计、产品设计原理、交互设计、用户体验设计、人机工程学、工业设计、视觉传达、材料与工艺、三维建模等，系统学习了产品与UI设计的理论知识与实践技能。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 页脚 -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <div class="footer-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <p class="footer-text">PRODUCT DESIGNER PORTFOLIO</p>
+                    </div>
+                    
+                    <p class="copyright">© 2024 杨琦. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </main>
+        
+        <style>
+            /* 主内容区域样式 */
+            .content {
+                display: flex;
+                flex-direction: column;
+                gap: 120px;
+            }
+            
+            /* 通用部分样式 */
+            .section {
+                position: relative;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 40px;
+                position: relative;
+            }
+            
+            .section-title-container {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .hexagon {
+                width: 30px;
+                height: 30px;
+                background-color: var(--accent);
+                clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 0 15px var(--accent-glow);
+                animation: pulse 3s infinite alternate;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                font-weight: 700;
+                color: var(--text-primary);
+                position: relative;
+            }
+            
+            .section-line {
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(to right, var(--accent), transparent);
+                margin-left: 20px;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .section-line::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to right, transparent, var(--accent), transparent);
+                animation: moving-light 3s ease-in-out infinite;
+            }
+            
+            @keyframes moving-light {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+            
+            /* 玻璃态卡片 */
+            .glassmorphism-card {
+                background: var(--glass);
+                backdrop-filter: blur(10px);
+                border-radius: 12px;
+                border: 1px solid rgba(100, 255, 218, 0.1);
+                padding: 40px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                position: relative;
+                overflow: hidden;
+                transition: var(--transition);
+            }
+            
+            .glassmorphism-card::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle at center, rgba(100, 255, 218, 0.03) 0%, transparent 80%);
+                transform: rotate(45deg);
+                pointer-events: none;
+            }
+            
+            .glassmorphism-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
+                border-color: rgba(100, 255, 218, 0.3);
+            }
+            
+            /* 工作经历样式 */
+            .timeline {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .timeline::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 18px;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(to bottom, var(--accent), rgba(100, 255, 218, 0.1));
+                border-radius: 2px;
+            }
+            
+            .timeline-item {
+                position: relative;
+                padding-left: 50px;
+            }
+            
+            .timeline-dot {
+                position: absolute;
+                top: 0;
+                left: 10px;
+                width: 18px;
+                height: 18px;
+                background-color: var(--accent);
+                border-radius: 50%;
+                box-shadow: 0 0 10px var(--accent-glow);
+                z-index: 1;
+            }
+            
+            .timeline-connector {
+                position: absolute;
+                top: 18px;
+                left: 19px;
+                width: 30px;
+                height: 2px;
+                background-color: var(--accent);
+                transform-origin: left center;
+                transform: rotate(90deg);
+            }
+            
+            .work-card {
+                margin-bottom: 30px;
+            }
+            
+            .work-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            
+            .company-name {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 0;
+            }
+            
+            .work-badge {
+                display: inline-flex;
+                align-items: center;
+                background: rgba(100, 255, 218, 0.1);
+                border-radius: 30px;
+                padding: 6px 12px;
+                border: 1px solid rgba(100, 255, 218, 0.2);
+            }
+            
+            .work-date {
+                font-family: var(--font-mono);
+                font-size: 13px;
+                color: var(--accent);
+            }
+            
+            .work-position {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .position-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+            
+            .tech-indicator {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .indicator-dot {
+                width: 8px;
+                height: 8px;
+                background-color: var(--accent);
+                border-radius: 50%;
+                box-shadow: 0 0 5px var(--accent-glow);
+            }
+            
+            .tech-indicator span {
+                font-size: 14px;
+                color: var(--text-secondary);
+            }
+            
+            .work-responsibilities {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 35px 0;
+            }
+            
+            .responsibility-item {
+                display: flex;
+                gap: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .bullet-point {
+                width: 8px;
+                height: 8px;
+                background-color: var(--accent);
+                border-radius: 50%;
+                margin-top: 8px;
+                flex-shrink: 0;
+            }
+            
+            .responsibility-item p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            .achievements {
+                background: rgba(100, 255, 218, 0.05);
+                border-radius: 8px;
+                padding: 20px;
+                border-left: 3px solid var(--accent);
+            }
+            
+            .achievement-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .achievement-badge i {
+                color: var(--accent);
+                font-size: 16px;
+            }
+            
+            .achievement-badge span {
+                font-weight: 600;
+                color: var(--accent);
+                font-size: 16px;
+            }
+            
+            .achievements p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            /* 项目经验样式 */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 30px;
+            }
+            
+            .project-card {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .project-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            
+            .project-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 0;
+            }
+            
+            .project-badge {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, var(--primary-light), rgba(100, 255, 218, 0.2));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(100, 255, 218, 0.3);
+                box-shadow: 0 0 10px var(--accent-glow);
+            }
+            
+            .project-badge i {
+                color: var(--accent);
+                font-size: 18px;
+            }
+            
+            .project-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .project-description p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            .contribution-title, .outcome-title {
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--accent);
+                margin: 0 0 10px 0;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .contribution-title::before, .outcome-title::before {
+                content: "❯";
+                color: var(--accent);
+            }
+            
+            .contribution-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .contribution-list li {
+                position: relative;
+                padding-left: 15px;
+                margin-bottom: 8px;
+                color: var(--text-secondary);
+                font-size: 15px;
+                line-height: 1.5;
+            }
+            
+            .contribution-list li::before {
+                content: "▹";
+                position: absolute;
+                left: 0;
+                color: var(--accent);
+            }
+            
+            .project-outcome p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            .project-tech {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: auto;
+            }
+            
+            /* 响应式设计 */
+            @media (max-width: 768px) {
+                .name {
+                    font-size: 48px;
+                }
+                
+                .timeline-item {
+                    padding-left: 40px;
+                }
+                
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .work-header {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .work-badge {
+                    align-self: flex-start;
+                }
+            }
+            
+            /* 技能部分样式 */
+            .skills-container {
+                width: 100%;
+            }
+            
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .skill-category {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .category-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .category-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, var(--primary-light), rgba(100, 255, 218, 0.2));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(100, 255, 218, 0.3);
+                box-shadow: 0 0 10px var(--accent-glow);
+            }
+            
+            .category-icon i {
+                color: var(--accent);
+                font-size: 18px;
+            }
+            
+            .category-title {
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--text-primary);
+                margin: 0;
+            }
+            
+            .skill-bars {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .skill-item {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .skill-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .skill-name {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--text-secondary);
+            }
+            
+            .skill-percentage {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--accent);
+            }
+            
+            .skill-progress-bg {
+                width: 100%;
+                height: 6px;
+                background-color: rgba(100, 255, 218, 0.1);
+                border-radius: 3px;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .skill-progress {
+                height: 100%;
+                width: 0;
+                background: linear-gradient(to right, var(--accent), var(--accent-glow));
+                border-radius: 3px;
+                position: relative;
+                transition: width 1.5s cubic-bezier(0.1, 0.5, 0.2, 1);
+            }
+            
+            .skill-progress::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+                animation: shining 2s infinite;
+            }
+            
+            @keyframes shining {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+            }
+            
+            .skill-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .skill-tag {
+                background: rgba(100, 255, 218, 0.1);
+                border: 1px solid rgba(100, 255, 218, 0.2);
+                border-radius: 30px;
+                padding: 8px 16px;
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--accent);
+                transition: var(--transition);
+            }
+            
+            .skill-tag:hover {
+                background: rgba(100, 255, 218, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 0 10px var(--accent-glow);
+            }
+            
+            /* 教育背景样式 */
+            .education-card {
+                display: flex;
+                gap: 25px;
+                padding: 35px;
+            }
+            
+            .edu-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, var(--primary-light), rgba(100, 255, 218, 0.2));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid rgba(100, 255, 218, 0.3);
+                box-shadow: 0 0 15px var(--accent-glow);
+                flex-shrink: 0;
+            }
+            
+            .edu-icon i {
+                color: var(--accent);
+                font-size: 24px;
+            }
+            
+            .edu-content {
+                flex: 1;
+            }
+            
+            .edu-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            
+            .school-name {
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 0;
+            }
+            
+            .edu-badge {
+                display: inline-flex;
+                align-items: center;
+                background: rgba(100, 255, 218, 0.1);
+                border-radius: 30px;
+                padding: 6px 12px;
+                border: 1px solid rgba(100, 255, 218, 0.2);
+            }
+            
+            .edu-date {
+                font-family: var(--font-mono);
+                font-size: 13px;
+                color: var(--accent);
+            }
+            
+            .edu-details {
+                display: flex;
+                gap: 25px;
+                margin-bottom: 15px;
+            }
+            
+            .edu-major, .edu-degree {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .label {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--accent);
+            }
+            
+            .value {
+                font-size: 16px;
+                color: var(--text-secondary);
+            }
+            
+            .edu-description p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            /* 页脚样式 */
+            .footer {
+                margin-top: 100px;
+                padding: 40px 0;
+                border-top: 1px solid rgba(100, 255, 218, 0.1);
+            }
+            
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .footer-logo {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .footer-dots {
+                display: flex;
+                gap: 5px;
+            }
+            
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: var(--accent);
+                animation: pulse 1.5s infinite alternate;
+            }
+            
+            .dot:nth-child(2) {
+                animation-delay: 0.5s;
+            }
+            
+            .dot:nth-child(3) {
+                animation-delay: 1s;
+            }
+            
+            .footer-text {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--text-secondary);
+                margin: 0;
+            }
+            
+            .copyright {
+                font-family: var(--font-mono);
+                font-size: 14px;
+                color: var(--text-secondary);
+                margin: 0;
+            }
+            
+            /* 响应式设计补充 */
+            @media (max-width: 768px) {
+                .edu-header, .edu-details {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .edu-badge {
+                    align-self: flex-start;
+                    margin-top: 10px;
+                }
+            }
+            
+            /* 项目展开/收起相关样式 */
+            .toggle-projects-container {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: center;
+                margin-top: 30px;
+                position: relative;
+                z-index: 10;
+            }
+            
+            .toggle-projects-btn {
+                background: var(--glass);
+                border: 1px solid rgba(100, 255, 218, 0.2);
+                color: var(--accent);
+                border-radius: 30px;
+                padding: 12px 24px;
+                font-family: var(--font-mono);
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+                z-index: 10;
+                position: relative;
+            }
+            
+            .toggle-projects-btn:hover {
+                background: rgba(100, 255, 218, 0.1);
+                box-shadow: 0 0 15px var(--accent-glow);
+                transform: translateY(-3px);
+            }
+            
+            .toggle-icon {
+                transition: transform 0.3s ease;
+            }
+            
+            .toggle-icon.rotate {
+                transform: rotate(180deg);
+            }
+            
+            .bottom-toggle {
+                margin-top: 40px;
+                margin-bottom: 10px;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                pointer-events: none;
+                position: relative;
+                z-index: 20;
+            }
+            
+            .bottom-toggle.visible {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: all;
+            }
+            
+            .hidden-projects {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 30px;
+                margin-top: 30px;
+                opacity: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: opacity 0.5s ease, max-height 0.5s ease;
+                position: relative;
+            }
+            
+            .hidden-projects.expanded {
+                opacity: 1;
+                max-height: 2000px;
+                overflow: visible;
+            }
+            
+            @media (max-width: 768px) {
+                .hidden-projects {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </div>
+    
+    <!-- 粒子效果和交互脚本 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 处理技能进度条动画
+        function animateSkills() {
+            console.log('Animating skill bars');
+            const skillElements = document.querySelectorAll('.skill-progress');
+            skillElements.forEach(skill => {
+                const percent = skill.getAttribute('data-percent');
+                skill.style.width = `${percent}%`;
+                console.log(`Setting skill width to ${percent}%`);
+            });
+        }
+        
+        // 展开/收起项目的脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化页面加载动画
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                // 在加载动画结束后立即执行技能条动画
+                animateSkills();
+            }, 1500);
+            
+            // 初始化粒子效果
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 40, density: { enable: true, value_area: 800 } },
+                        color: { value: '#64ffda' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.3, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+                        size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false } },
+                        line_linked: { enable: true, distance: 150, color: '#64ffda', opacity: 0.2, width: 1 },
+                        move: { enable: true, speed: 1, direction: 'none', random: true, straight: false, out_mode: 'out', bounce: false }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        },
+                        modes: {
+                            grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                            push: { particles_nb: 3 }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+            
+            // 立即执行一次技能条动画
+            animateSkills();
+            
+            // 处理滚动动画
+            const animateOnScroll = () => {
+                const sections = document.querySelectorAll('.section');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            
+                            // 如果是技能部分，触发技能进度条动画
+                            if (entry.target.classList.contains('skills')) {
+                                animateSkills();
+                            }
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            };
+            
+            // 初始化滚动动画
+            animateOnScroll();
+            
+            // 添加悬停效果
+            const addHoverEffects = () => {
+                const cards = document.querySelectorAll('.glassmorphism-card');
+                
+                cards.forEach(card => {
+                    // 跳过项目展开/收起按钮容器
+                    if (card.closest('.toggle-projects-container')) {
+                        return;
+                    }
+                    
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // 计算光照效果位置
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const percentX = (x - centerX) / centerX;
+                        const percentY = (y - centerY) / centerY;
+                        
+                        // 添加轻微的3D效果
+                        card.style.transform = `
+                            translateY(-5px)
+                            perspective(1000px)
+                            rotateX(${percentY * 2}deg)
+                            rotateY(${percentX * -2}deg)
+                        `;
+                        
+                        // 调整阴影效果
+                        card.style.boxShadow = `
+                            ${-percentX * 10}px ${-percentY * 10}px 20px rgba(100, 255, 218, 0.1),
+                            0 15px 40px rgba(0, 0, 0, 0.3)
+                        `;
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(-5px)';
+                        card.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(100, 255, 218, 0.3)';
+                    });
+                });
+            };
+            
+            // 初始化悬停效果
+            setTimeout(addHoverEffects, 2000);
+            
+            // 展开/收起项目的脚本
+            const toggleTopBtn = document.getElementById('toggle-projects-top');
+            const toggleBottomBtn = document.getElementById('toggle-projects-bottom');
+            const toggleTop = document.getElementById('toggle-top');
+            const toggleBottom = document.getElementById('toggle-bottom');
+            const hiddenProjects = document.querySelector('.hidden-projects');
+            
+            function toggleProjects() {
+                console.log('Toggle projects clicked');
+                hiddenProjects.classList.toggle('expanded');
+                
+                if (hiddenProjects.classList.contains('expanded')) {
+                    // 显示底部按钮，隐藏顶部按钮
+                    setTimeout(() => {
+                        toggleBottom.classList.add('visible');
+                        console.log('Bottom button should be visible now');
+                    }, 500);
+                    toggleTop.style.opacity = '0';
+                    toggleTop.style.pointerEvents = 'none';
+                } else {
+                    // 显示顶部按钮，隐藏底部按钮
+                    toggleBottom.classList.remove('visible');
+                    toggleTop.style.opacity = '1';
+                    toggleTop.style.pointerEvents = 'all';
+                    
+                    // 滚动到顶部按钮位置
+                    toggleTopBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            
+            // 确保按钮存在后再添加事件监听器
+            if (toggleTopBtn) {
+                toggleTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Top button clicked');
+                    toggleProjects();
+                });
+                console.log('Top button event listener added');
+            } else {
+                console.error('Toggle top button not found');
+            }
+            
+            if (toggleBottomBtn) {
+                toggleBottomBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Bottom button clicked');
+                    toggleProjects();
+                });
+                console.log('Bottom button event listener added');
+            } else {
+                console.error('Toggle bottom button not found');
+            }
+        });
+        
+        // 确保在窗口完全加载后也执行技能条动画
+        window.addEventListener('load', animateSkills);
+    </script>
+</body>
+</html> 
